@@ -1,4 +1,4 @@
-# OmniTab
+# OmniTab - Copy All Tabs at Once
 
 > Copy all your open tabs as a portable Base64 string and unpack them in any browser — instantly.
 
