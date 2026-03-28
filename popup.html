@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OmniTab</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-icon">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h10v2H4z"/>
+      </svg>
+    </div>
+    <div class="header-text">
+      <div class="header-title">OmniTab</div>
+      <div class="header-subtitle" id="tab-count-label">Loading tabs…</div>
+    </div>
+  </header>
+
+  <!-- Pack Section -->
+  <div class="section">
+    <div class="section-label">Pack &amp; Export</div>
+
+    <button class="btn btn-primary btn-full" id="btn-pack" title="Copy all tab URLs as a Base64 string">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 1H4C2.9 1 2 1.9 2 3v14h2V3h12V1zm3 4H8C6.9 5 6.01 5.9 6.01 7L6 21c0 1.1.89 2 1.99 2H19c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+      </svg>
+      Copy as Base64
+    </button>
+
+    <button class="btn btn-tonal btn-full" id="btn-raw" title="Copy all tab URLs as plain text">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M14 17H4v2h10v-2zm6-8H4v2h16V9zM4 15h16v-2H4v2zM4 5v2h16V5H4z"/>
+      </svg>
+      Copy as Raw URLs
+    </button>
+  </div>
+
+  <!-- Unpack Section -->
+  <div class="section">
+    <div class="section-label">Unpack Tabs</div>
+
+    <div class="input-group">
+      <label class="input-label" for="base64-input">Paste your Base64 string below</label>
+      <textarea
+        class="input-field"
+        id="base64-input"
+        placeholder="Paste Base64 string here…"
+        spellcheck="false"
+        autocomplete="off"
+      ></textarea>
+    </div>
+
+    <button class="btn btn-outlined btn-full" id="btn-unpack" title="Open all tabs in the current window">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+      </svg>
+      Open in This Window
+    </button>
+
+    <button class="btn btn-tonal btn-full" id="btn-unpack-new-window" title="Open all tabs in a brand-new window — ideal when switching browsers">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M19 4H5c-1.11 0-2 .89-2 2v13c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6a2 2 0 0 0-2-2zm0 15H5V9h14v10zM5 8V6h14v2H5z"/>
+      </svg>
+      Open in New Window
+    </button>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

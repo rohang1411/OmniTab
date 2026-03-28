@@ -1,0 +1,298 @@
+/* ============================================================
+   OmniTab — styles.css
+   Modern minimalist dark mode — pure CSS, zero deps
+   ============================================================ */
+
+/* ---------- Design Tokens ---------- */
+:root {
+  --bg:              #111214;
+  --surface:         #1c1e22;
+  --surface-raised:  #242730;
+  --border:          #2e3238;
+  --border-focus:    #4a90d9;
+
+  --accent:          #5b9cf6;
+  --accent-soft:     rgba(91, 156, 246, 0.12);
+  --accent-hover:    rgba(91, 156, 246, 0.18);
+  --accent-text:     #e8f1ff;
+
+  --text-primary:    #e8eaed;
+  --text-secondary:  #8a8f98;
+  --text-on-accent:  #0d1a30;
+
+  --success:         #4caf82;
+  --error:           #f28b82;
+
+  --radius-sm:   6px;
+  --radius-md:   10px;
+  --radius-lg:   14px;
+  --radius-full: 9999px;
+
+  --shadow-sm: 0 1px 3px rgba(0,0,0,.4);
+  --shadow-md: 0 4px 16px rgba(0,0,0,.5);
+
+  --t-fast:   100ms;
+  --t-normal: 180ms;
+
+  --font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* ---------- Reset & Base ---------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 14px; }
+
+body {
+  width: 320px;
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Header ---------- */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.header-icon {
+  width: 30px;
+  height: 30px;
+  background: var(--accent-soft);
+  border: 1px solid rgba(91, 156, 246, 0.25);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.header-icon svg {
+  width: 16px;
+  height: 16px;
+  fill: var(--accent);
+}
+
+.header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.header-title {
+  font-size: .9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: .01em;
+}
+
+.header-subtitle {
+  font-size: .7rem;
+  color: var(--text-secondary);
+}
+
+/* ---------- Section Card ---------- */
+.section {
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: 1px solid var(--border);
+}
+
+.section-label {
+  font-size: .6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--text-secondary);
+  padding-bottom: 2px;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-family: var(--font);
+  font-size: .8rem;
+  font-weight: 500;
+  letter-spacing: .01em;
+  padding: 9px 16px;
+  transition:
+    background var(--t-fast) ease,
+    box-shadow var(--t-fast) ease,
+    transform var(--t-fast) ease,
+    border-color var(--t-fast) ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  /* inherit fill from color so icons always match text */
+  fill: currentColor;
+}
+
+/* Filled — primary action */
+.btn-primary {
+  background: var(--accent);
+  color: var(--text-on-accent);
+}
+.btn-primary:hover {
+  background: #6ea8f8;
+  box-shadow: 0 0 0 3px rgba(91,156,246,.2);
+  transform: translateY(-1px);
+}
+.btn-primary:active {
+  background: #4c87e8;
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Tonal — secondary / ghost-like */
+.btn-tonal {
+  background: var(--surface-raised);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+.btn-tonal:hover {
+  background: #2e3340;
+  border-color: #3e4550;
+  transform: translateY(-1px);
+}
+.btn-tonal:active {
+  transform: translateY(0);
+}
+
+/* Outlined */
+.btn-outlined {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: 1px solid rgba(91,156,246,.3);
+}
+.btn-outlined:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+.btn-outlined:active {
+  transform: translateY(0);
+}
+
+/* Full-width util */
+.btn-full { width: 100%; }
+
+/* Ripple */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255,255,255,.12);
+  transform: scale(0);
+  animation: ripple-anim 450ms linear;
+  pointer-events: none;
+}
+@keyframes ripple-anim {
+  to { transform: scale(4); opacity: 0; }
+}
+
+/* Disabled state */
+.btn:disabled {
+  opacity: .4;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ---------- Input ---------- */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.input-label {
+  font-size: .7rem;
+  color: var(--text-secondary);
+}
+
+.input-field {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: var(--font);
+  font-size: .78rem;
+  padding: 9px 10px;
+  resize: none;
+  outline: none;
+  transition: border-color var(--t-fast) ease, box-shadow var(--t-fast) ease;
+  min-height: 72px;
+  line-height: 1.5;
+}
+
+.input-field::placeholder {
+  color: var(--text-secondary);
+  opacity: .55;
+}
+
+.input-field:focus {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 2px rgba(74,144,217,.15);
+}
+
+/* ---------- Toast ---------- */
+.toast {
+  position: fixed;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  background: var(--surface-raised);
+  color: var(--text-primary);
+  border-radius: var(--radius-full);
+  font-size: .75rem;
+  font-weight: 600;
+  padding: 7px 16px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity var(--t-normal) ease,
+    transform var(--t-normal) ease;
+  white-space: nowrap;
+  z-index: 100;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.toast.success { color: var(--success); border-color: var(--success); }
+.toast.error   { color: var(--error);   border-color: var(--error);   }
+
+/* ---------- Divider ---------- */
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 0;
+}
